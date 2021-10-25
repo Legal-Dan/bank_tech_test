@@ -28,4 +28,17 @@ class Bank_account
     }
   end
 
+  def print_statement
+    statement_to_print = "date || credit || debit || balance"
+    @statement.reverse_each do |transaction|
+      statement_to_print += "\n#{transaction[:date]} ||#{format_number(transaction[:credit])} ||#{format_number(transaction[:debit])} ||#{format_number(transaction[:balance])}"
+    end
+    statement_to_print
+  end
+
+  def format_number(number)
+    return "" if number == nil
+    ' %.2f' % number.to_f
+  end
+    
 end

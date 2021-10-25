@@ -11,15 +11,15 @@ class Bank_account
 
   def deposit(credit)
     @balance += credit
-    update_statement(@balance, credit=credit)
+    update_statement(@balance, credit: credit)
   end
 
   def withdraw(debit)
     @balance -= debit
-    update_statement(@balance, debit=debit)
+    update_statement(@balance, debit: debit)
   end
 
-  def update_statement(balance, credit=nil, debit=nil)
+  def update_statement(balance, credit: nil, debit: nil)
     @statement << {
       date: Date.today.strftime("%d/%m/%Y"),
       credit: credit,

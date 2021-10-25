@@ -29,4 +29,24 @@ describe 'bank_account' do
     expect(account.statement[0][:date]).to eq('10/01/2023')
   end
 
+  it 'can store the details of the deposit' do
+    account = Bank_account.new
+    account.deposit(1000)
+    expect(account.statement[0][:credit]).to eq(1000)
+    expect(account.statement[0][:debit]).to eq(nil)
+  end
+
+  it 'can store the details of the deposit/withdrawal' do
+    account = Bank_account.new
+    account.withdraw(500)
+    expect(account.statement[0][:credit]).to eq(nil)
+    expect(account.statement[0][:debit]).to eq(500)
+  end
+
+  it 'can store the details of the balance' do
+    account = Bank_account.new
+    account.deposit(1000)
+    expect(account.statement[0][:balance]).to eq(1000)
+  end
+
 end

@@ -6,6 +6,10 @@ final_statement = "date || credit || debit || balance
 13/01/2023 || 2000.00 || || 3000.00
 10/01/2023 || 1000.00 || || 1000.00"
 
+def set_date(day)
+  allow(Date).to receive(:today).and_return Date.new(2023,1,day)
+end
+
 describe 'bank_account' do
   it 'can store a sum that is deposited' do
     account = Bank_account.new
@@ -29,7 +33,7 @@ describe 'bank_account' do
 
   it 'can store the details of the transaction including the date' do
     account = Bank_account.new
-    allow(Date).to receive(:today).and_return Date.new(2023,1,10)
+    set_date(10)
     account.deposit(100)
     expect(account.statement[0][:date]).to eq('10/01/2023')
   end
@@ -41,7 +45,7 @@ describe 'bank_account' do
     expect(account.statement[0][:debit]).to eq(nil)
   end
 
-  it 'can store the details of the deposit/withdrawal' do
+  it 'can store the details of the withdrawal' do
     account = Bank_account.new
     account.withdraw(500)
     expect(account.statement[0][:credit]).to eq(nil)
@@ -56,20 +60,20 @@ describe 'bank_account' do
 
   it 'can print a full statement of account transactions' do
     account = Bank_account.new
-    allow(Date).to receive(:today).and_return Date.new(2023,1,10)
+    set_date(10)
     account.deposit(1000)
-    allow(Date).to receive(:today).and_return Date.new(2023,1,13)
+    set_date(13)
     account.deposit(2000)
-    allow(Date).to receive(:today).and_return Date.new(2023,1,14)
+    set_date(14)
     account.withdraw(500)
     expect(account.print_statement).to eq(final_statement)
   end
 
   it 'can print a full statement when given smaller transactions' do
     account = Bank_account.new
-    allow(Date).to receive(:today).and_return Date.new(2023,1,10)
+    set_date(10)
     account.deposit(1.5)
-    allow(Date).to receive(:today).and_return Date.new(2023,1,14)
+    set_date(14)
     account.withdraw(0.99)
     expect(account.print_statement).to include("0.51")
   end

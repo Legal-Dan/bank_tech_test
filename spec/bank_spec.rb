@@ -65,4 +65,13 @@ describe 'bank_account' do
     expect(account.print_statement).to eq(final_statement)
   end
 
+  it 'can print a full statement when given smaller transactions' do
+    account = Bank_account.new
+    allow(Date).to receive(:today).and_return Date.new(2023,1,10)
+    account.deposit(1.5)
+    allow(Date).to receive(:today).and_return Date.new(2023,1,14)
+    account.withdraw(0.99)
+    expect(account.print_statement).to include("0.51")
+  end
+
 end

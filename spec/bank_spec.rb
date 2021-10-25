@@ -13,4 +13,11 @@ describe 'bank_account' do
     account.deposit(50)
     expect(account.balance).to equal(150)
   end
+
+  it 'can update the balance as money is withdrawn' do
+    account = Bank_account.new
+    account.deposit(100)
+    account.withdraw(50)
+    expect(account.balance).to equal(50)
+  end
 end

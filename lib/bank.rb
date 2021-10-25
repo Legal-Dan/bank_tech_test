@@ -5,7 +5,11 @@ class Bank_account
     @balance = 0
   end
 
-  def deposit(amount)
-    @balance += amount
+  def deposit(credit)
+    @balance += credit
+  end
+
+  def withdraw(debit)
+    @balance -= debit
   end
 end

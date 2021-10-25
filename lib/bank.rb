@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'date'
 
-class Bank_account
-  attr :balance
-  attr :statement
-  
+# main bank account class
+class BankAccount
+  attr :balance, :statement
+
   def initialize
     @balance = 0
     @statement = []
@@ -21,7 +23,7 @@ class Bank_account
 
   def update_statement(balance, credit: nil, debit: nil)
     @statement << {
-      date: Date.today.strftime("%d/%m/%Y"),
+      date: Date.today.strftime('%d/%m/%Y'),
       credit: credit,
       debit: debit,
       balance: balance
@@ -29,16 +31,17 @@ class Bank_account
   end
 
   def print_statement
-    statement_to_print = "date || credit || debit || balance"
+    statement_to_print = 'date || credit || debit || balance'
     @statement.reverse_each do |transaction|
-      statement_to_print += "\n#{transaction[:date]} ||#{format_number(transaction[:credit])} ||#{format_number(transaction[:debit])} ||#{format_number(transaction[:balance])}"
+      statement_to_print += "\n#{transaction[:date]} ||#{format_number(transaction[:credit])} ||"
+      statement_to_print += "#{format_number(transaction[:debit])} ||#{format_number(transaction[:balance])}"
     end
     statement_to_print
   end
 
   def format_number(number)
-    return "" if number == nil
-    ' %.2f' % number.to_f
+    return '' if number.nil?
+
+    format(' %.2f', number.to_f)
   end
-    
 end

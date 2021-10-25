@@ -58,7 +58,7 @@ puts(account_name.print_statement)
 ```
   
   
-## `Example Usage
+## Example Usage
 <img width="937" alt="Screenshot 2021-10-25 at 16 10 52" src="https://user-images.githubusercontent.com/84837127/138723546-1e595b3a-1d74-4436-8396-6bb236f7fbd2.png">
   
   

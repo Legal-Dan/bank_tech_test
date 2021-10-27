@@ -25,7 +25,13 @@ Then she would see
 
 ## Installation and Testing
   
-There are not installation requirements for the application outside of having a version of Ruby installed. To run the tests navigate to the bank_tech_test folder on your local drive in terminal and run
+To run RuboCop and SimpleCov navigate to the bank_tech_test folder on your local drive in terminal and run
+
+```ruby
+bundler
+```
+
+There are not installation requirements for the main application outside of having a version of Ruby installed. To run the tests navigate to the bank_tech_test folder on your local drive in terminal and run
 
 ```ruby
 rspec
@@ -63,6 +69,6 @@ puts(account_name.print_statement)
   
   
 ## Further Testing
-Tested with [RSpec]https://rspec.info/
-Style checked with [RuboCop](https://github.com/rubocop/rubocop)
+Tested with [RSpec]https://rspec.info/  
+Style checked with [RuboCop](https://github.com/rubocop/rubocop)  
 Testing coverage monitored using [SimpleCov]https://github.com/simplecov-ruby/simplecov

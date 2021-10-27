@@ -1,47 +1,28 @@
 # frozen_string_literal: true
 
 require 'date'
+require_relative 'statement'
 
-# main bank account class
+# main bank account class responsible for changes to the account balance
 class BankAccount
   attr :balance, :statement
 
   def initialize
     @balance = 0
-    @statement = []
+    @statement = Statement.new
   end
 
   def deposit(credit)
     @balance += credit
-    update_statement(@balance, credit: credit)
+    @statement.update_statement(@balance, credit: credit)
   end
 
   def withdraw(debit)
     @balance -= debit
-    update_statement(@balance, debit: debit)
-  end
-
-  def update_statement(balance, credit: nil, debit: nil)
-    @statement << {
-      date: Date.today.strftime('%d/%m/%Y'),
-      credit: credit,
-      debit: debit,
-      balance: balance
-    }
+    @statement.update_statement(@balance, debit: debit)
   end
 
   def print_statement
-    statement_to_print = 'date || credit || debit || balance'
-    @statement.reverse_each do |transaction|
-      statement_to_print += "\n#{transaction[:date]} ||#{format_number(transaction[:credit])} ||"
-      statement_to_print += "#{format_number(transaction[:debit])} ||#{format_number(transaction[:balance])}"
-    end
-    statement_to_print
-  end
-
-  def format_number(number)
-    return '' if number.nil?
-
-    format(' %.2f', number.to_f)
+    @statement.print_statement
   end
 end

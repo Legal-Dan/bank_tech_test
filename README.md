@@ -59,4 +59,6 @@ puts(account_name.print_statement)
   
   
 ## Further Testing
-Tested with [RuboCop](https://github.com/rubocop/rubocop)
+Tested with [RSpec]https://rspec.info/
+Style checked with [RuboCop](https://github.com/rubocop/rubocop)
+Testing coverage monitored using [SimpleCov]https://github.com/simplecov-ruby/simplecov

@@ -43,7 +43,7 @@ describe 'bank_account' do
     account = BankAccount.new
     mock_date(10)
     account.deposit(100)
-    expect(account.statement[0][:date]).to eq('10/01/2023')
+    expect(account.statement.recorded_transactions[0][:date]).to eq('10/01/2023')
   end
 end
 
@@ -51,8 +51,8 @@ describe 'bank_account' do
   it 'can store the details of the deposit' do
     account = BankAccount.new
     account.deposit(1000)
-    expect(account.statement[0][:credit]).to eq(1000)
-    expect(account.statement[0][:debit]).to eq(nil)
+    expect(account.statement.recorded_transactions[0][:credit]).to eq(1000)
+    expect(account.statement.recorded_transactions[0][:debit]).to eq(nil)
   end
 end
 
@@ -60,8 +60,8 @@ describe 'bank_account' do
   it 'can store the details of the withdrawal' do
     account = BankAccount.new
     account.withdraw(500)
-    expect(account.statement[0][:credit]).to eq(nil)
-    expect(account.statement[0][:debit]).to eq(500)
+    expect(account.statement.recorded_transactions[0][:credit]).to eq(nil)
+    expect(account.statement.recorded_transactions[0][:debit]).to eq(500)
   end
 end
 
@@ -69,7 +69,7 @@ describe 'bank_account' do
   it 'can store the details of the balance' do
     account = BankAccount.new
     account.deposit(1000)
-    expect(account.statement[0][:balance]).to eq(1000)
+    expect(account.statement.recorded_transactions[0][:balance]).to eq(1000)
   end
 end
 
